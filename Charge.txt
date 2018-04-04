@@ -1,0 +1,27 @@
+Bed Charges
+-----------------------------------
+Sr	Bed	General	Private
+1	Cathicu	1250	2500
+2	Floor	60	250
+3	General	60	250
+4	Icu	1000	1000
+5	Medicu	1250	2500
+6	Medprivate	1200	1200
+7	Nicu - Ig Feed	100	100
+8	Nicu-Photothera	300	300
+9	Nicu-Ventilator	750	750
+10	Private	600	600
+
+Food Charges
+------------------------------------
+S.no.	Tariff Name	Charges 
+1	B Diabetic	80 
+2	Diabetic Diet	80
+3	Full Diet	80
+4	Hcd	80
+5	High Protein Diet	80
+6	Liquid Diet Gruel	80
+7	Liquid Diet High Protein	80
+8	Liquid Diabetic	80
+9	Milk Eve	100
+10	Milk M-E	150

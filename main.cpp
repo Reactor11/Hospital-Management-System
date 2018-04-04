@@ -22,14 +22,26 @@ class display_panel{
 
 class core_panel:public display_panel{
 	private:
-		int user_id ;
-		int pwd;
+		int aUserId ,apwd ,counter_login;
 	public:
+		core_panel()
+		{
+		counter_login=0;
+		} 
 		void main_menu();
-		void cust_page();
+		void cust_login();
 		void admin_login();
 		void check_login();
 		void admin_panel();
+		void dr_details();
+		void charge();
+		void facilities();
+		void help();
+		void about_us();
+//		void read_pInfo();
+//		void add_pInfo();
+//		void add_dr();
+//		void dlt_all();
 }core;
 
 //Member Function Defination
@@ -51,45 +63,255 @@ int display_panel::visitor_counter()
 }
 void core_panel::check_login()
 {
-	if(admin_user_id == user_id && admin_pass == pwd)
+	
+		if(admin_user_id == aUserId && admin_pass == apwd)
 	{
 		admin_panel();
 	}
 	else
 	{
 		frame();
+		++counter_login;
+		if(counter_login == 3)
+		{
+			flow("You Have Exceeded The Limit And The Database Is Shutting Down...",25,15);
+			Sleep(10);
+			exit(1);
+		}
 		flow("You Have Entered Wrong Credentials.",30,15);
 		flow("Press Any Key To Go To Main Menu...",30,16);
 		getchar();
+		getchar();
 		main_menu();
 	}
+	
 }
 void core_panel::admin_panel()
 {
 	frame();
 	flow("------------------ADMIN PANEL------------------",30,15);
-//	flow("1.Add ");
+	flow("1.Show Patient Info",30,17);
+	flow("2.Add Patient Info",30,18);
+	flow("3.Add New Doctor's Information",30,19);
+	flow("4.Clear All The Information In The Database.",30,20);
+	flow("5.Display The Details Of All The Doctors",30,21);
+	flow("6.LogOut",30,22);
+	flow("7.Exit",30,23);
+	flow("Enter Your Choice...",30,24);
+	int ch;
+	cin>>ch;
+	switch(ch)
+	{
+		case 1:
+			{
+//				read_pInfo();
+				admin_panel();
+				break;
+			}
+		case 2:
+			{
+//				add_pInfo();
+				admin_panel();
+				break;
+			}
+		case 3:
+			{
+//				add_dr();
+				admin_panel();
+				break;
+			}
+		case 4:
+			{
+//				dlt_all();
+				admin_panel();
+				break;
+			}
+		case 5:
+			{
+//				dr_details();
+				admin_panel();
+				break;
+			}
+		case 6:
+			{
+				frame();
+				flow("You Have Succesfully Logged out..",30,50);
+				flow("Please Wait While We Redirect You To Main Menu",30,51);
+				Sleep(300);
+				main_menu();
+			}
+		case 7:
+			{
+				exit_scr();
+				break;
+			}
+		default :
+			{
+				frame();
+				flow("You Have Entered Wrong Choice...",30,20);
+				flow("Press any key to go back to Customer Page...",30,22);
+				getchar();
+				getchar();
+				admin_panel();
+			}
+	}
 }
-void core_panel::cust_page()
+void core_panel::cust_login()
 {
 	frame();
 	flow("------------------CUSTOMER PAGE------------------",30,15);
-	flow("1.    :  ",45,17);
-	cin>>user_id;
-	flow("Enter Password  :  ",45,18);
-	cin>>pwd;
-	flow("Exit ",45,19);
-	flow("Enter Your Choice : ",45,21);
-	
+	flow("1.Show Available Doctors And There Specialization.",30,16);
+	flow("2.Our Charges",30,17);
+	flow("3.Availabe Facilities.",30,18);
+	flow("4.Help",30,19);
+	flow("5.About US",30,20);
+	flow("6.Exit",30,21);
+	flow("Enter Your Choice... ",30,24);
+	int ch;
+	cin>>ch;
+	switch(ch)
+	{
+		case 1: 
+			{
+			dr_details();
+			cust_login();
+			break;
+		    }
+		case 2:
+			{
+			charge();
+			cust_login();
+			break;
+			}
+		case 3:
+			{
+			facilities();
+			cust_login();
+			break;
+			}
+		case 4:
+			{
+			help();
+			cust_login();
+			break;
+			}
+		case 5:
+			{
+			about_us();
+			cust_login();
+			break;
+			}
+		case 6:
+			{
+			exit_scr();
+			break;	
+			}
+		default :
+			{
+				frame();
+				flow("You Have Entered Wrong Choice...",30,20);
+				flow("Press any key to go back to Customer Page...",30,22);
+				getchar();
+				getchar();
+				cust_login();
+			}
+	}
+}
+////void core_panel::add_pInfo()
+//{
+//	int name, age;
+////	fstream file;
+////	file.open("Patient_Info.txt",ios::app);
+//	
+//}
+void core_panel::about_us()
+{
+	system("COLOR FC");
+	ifstream fin;
+    fin.open("AboutUs.txt");
+    char ch; 
+    while(fin)
+    {
+       
+        fin.get(ch);
+        cout<<ch;
+    }
+    getchar();
+    getchar();
+    fin.close();
+}
+void core_panel::help()
+{
+	system("COLOR FC");
+	ifstream fin;
+    fin.open("Help.txt");
+    char ch; 
+    while(fin)
+    {
+       
+        fin.get(ch);
+        cout<<ch;
+    }
+    getchar();
+    getchar();
+    fin.close();
+}
+void core_panel::facilities()
+{
+	system("COLOR FC");
+	ifstream fin;
+    fin.open("Facilities.txt");
+    char ch; 
+    while(fin)
+    {
+       
+        fin.get(ch);
+        cout<<ch;
+    }
+    getchar();
+    getchar();
+    fin.close();
+}
+void core_panel::charge()
+{
+	system("COLOR FC");
+	ifstream fin;
+    fin.open("Charge.txt");
+    char ch; 
+    while(fin)
+    {
+       
+        fin.get(ch);
+        cout<<ch;
+    }
+    getchar();
+    getchar();
+    fin.close();	
+}
+void core_panel::dr_details()
+{
+	system("COLOR FC");
+	ifstream fin;
+    fin.open("Doctor_Details.txt");
+    char ch; 
+    while(fin)
+    {
+       
+        fin.get(ch);
+        cout<<ch;
+    }
+    getchar();
+    getchar();
+    fin.close();
 }
 void core_panel::admin_login()
 {
 	frame();
 	flow("------------------ADMIN LOGIN------------------",30,15);
 	flow("User Id : ",45,17);
-	cin>>user_id;
+	cin>>aUserId;
 	flow("Enter Password : ",45,18);
-	cin>>pwd;
+	cin>>apwd;
 	check_login();
 }
 char* display_panel::date_time()
@@ -99,7 +321,7 @@ char* display_panel::date_time()
 	char *loc=ctime(&t);
 	return loc;		//Returns local time and date
 }
-void display_panel::frame()
+inline void display_panel::frame()
 {
 			system("cls");
 			system("COLOR FC");
@@ -133,7 +355,7 @@ void display_panel::frame()
 			int v;
 			v=visitor_counter();
 			string d="Visitor Counter --: ";
-			gotoxy(89,1);
+			gotoxy(88,1);
 			cout<<d<<v;
 }
 void display_panel::welcome_display()
@@ -179,7 +401,7 @@ void core_panel::main_menu()
 	int x;
 	cin>>x;
 	switch(x){
-		case 1: cust_page(); break;
+		case 1: cust_login(); break;
 		case 2: admin_login(); break;
 		case 3: exit_scr(); break;
 		default:
@@ -192,7 +414,7 @@ void core_panel::main_menu()
 	}
 	getchar();	
 }
-int display_panel::flow(string s,int x,int y)
+inline int display_panel::flow(string s,int x,int y)
 {
 	for(int k=0 ;s[k]!='\0';k++)
 			{
@@ -227,7 +449,6 @@ int main()
 	core.main_menu();
 	return 0;
 }
-
 //Global Function Declaration
 void gotoxy (int x, int y)		//Gotoxy Defination And Declaration.
 {
